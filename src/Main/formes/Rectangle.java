@@ -9,10 +9,9 @@ import utils.Vector2D;
 
 public class Rectangle extends Forme{
 
-	public Rectangle(Point2D[] points, Color c) throws Exception{
+	public Rectangle(Point2D[] points) throws Exception{
 		super(null, null);
 		if(points.length == 4) {
-			super.setC(c);
 			super.setPoints(points);
 		} else {
 			throw new Exception("Invalid points");
@@ -45,14 +44,7 @@ public class Rectangle extends Forme{
 
 	@Override
 	public Segment[] getHeight() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void render(Graphics2D g) {
-		// TODO Auto-generated method stub
-		
+		throw new Exception("Un rectangle n'a pas de hauteur");
 	}
 
 }

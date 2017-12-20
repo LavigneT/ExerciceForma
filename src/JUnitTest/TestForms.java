@@ -9,6 +9,8 @@ import static org.junit.Assert.assertTrue;
 
 import java.awt.Color;
 
+import javax.swing.plaf.synth.SynthSpinnerUI;
+
 import org.junit.jupiter.api.Test;
 
 import Main.formes.Forme;
@@ -16,6 +18,8 @@ import Main.formes.Point2D;
 import Main.formes.Rectangle;
 import Main.formes.Square;
 import Main.formes.Triangle2D;
+import utils.Utils;
+import utils.Vector2D;
 
 class TestForms {
 	
@@ -27,7 +31,7 @@ class TestForms {
 		
 		try {
 			Forme test1 = new Square(new Point2D[] {new Point2D(10.0f, 10.0f), new Point2D(20.0f, 10.0f), 
-					new Point2D(10.0f, 20.0f), new Point2D(20.0f, 20.f)}, Color.red);
+					new Point2D(10.0f, 20.0f), new Point2D(20.0f, 20.f)});
 			
 			assertEquals(test1.getPerimeter(), 40, 0.05);
 			assertEquals(test1.getHeight()[0].getLength(), 10, 0.1);
@@ -40,11 +44,83 @@ class TestForms {
 		}
 	}
 	
+	@Test 
+	void TestDotProduct() {
+		Vector2D v1 = new Vector2D(1, 2);
+		Vector2D v2 = new Vector2D(3, 4);
+		
+		assertEquals(Utils.dotProduct(v1, v2), 11, 0.1);
+		
+		Vector2D v3 = new Vector2D(2, 2);
+		Vector2D v4 = new Vector2D(3, -2);
+		assertEquals(Utils.dotProduct(v3, v4), 2, 0.1);
+		
+		Vector2D v5 = new Vector2D(4, -1);
+		Vector2D v6 = new Vector2D(0, 3);
+		assertEquals(Utils.dotProduct(v5, v6), -3, 0.1);
+		
+		Vector2D v7 = new Vector2D(2, 0);
+		Vector2D v8 = new Vector2D(0, 2);
+		assertEquals(Utils.dotProduct(v7, v8), 0, 0.1);
+	}
+	
+	/**
+	 * Test de l'enum qui determine si le triangle est obtusangle, rectangle ou acutangle
+	 */
+	@Test
+	void TestTypeTriangle() {
+		try {
+			Triangle2D test1 = new Triangle2D(new Point2D[] {new Point2D(0, 0), new Point2D(2, 1), new Point2D(0, 3)});
+			assertEquals(test1.getType(), Triangle2D.typeTriangle.acutangle);
+			
+			Triangle2D test2 = new Triangle2D(new Point2D[] {new Point2D(0, 0), new Point2D(5, 1), new Point2D(0, 3)});
+			assertEquals(test2.getType(), Triangle2D.typeTriangle.acutangle);
+			
+			Triangle2D test3 = new Triangle2D(new Point2D[] {new Point2D(0, 0), new Point2D(1, 2), new Point2D(0, 5)});
+			assertEquals(test3.getType(), Triangle2D.typeTriangle.obtusangle);
+			
+			Triangle2D test4 = new Triangle2D(new Point2D[] {new Point2D(0, 0), new Point2D(0, 2), new Point2D(0, 2)});
+			assertEquals(test4.getType(), Triangle2D.typeTriangle.rectangle);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	void TestHeightTriangle() {
+		try {
+			Triangle2D test1 = new Triangle2D(new Point2D[] {new Point2D(1, 2), new Point2D(0, 5), new Point2D(0, 0)});
+			assertEquals(test1.getHeight().length, 1);
+			assertEquals(test1.getHeight()[0].getP1().getX(), 1);
+			assertEquals(test1.getHeight()[0].getP1().getY(), 2);
+			assertEquals(test1.getHeight()[0].getP2().getX(), 0);
+			assertEquals(test1.getHeight()[0].getP2().getY(), 2);
+			
+			Triangle2D test2 = new Triangle2D(new Point2D[] {new Point2D(0, 0), new Point2D(1, 2), new Point2D(0, 5)});
+			assertEquals(test2.getHeight().length, 1);
+			assertEquals(test2.getHeight()[0].getP1().getX(), 1);
+			assertEquals(test2.getHeight()[0].getP1().getY(), 2);
+			assertEquals(test2.getHeight()[0].getP2().getX(), 0);
+			assertEquals(test2.getHeight()[0].getP2().getY(), 2);
+			
+			Triangle2D test3 = new Triangle2D(new Point2D[] {new Point2D(0, 5), new Point2D(0, 0), new Point2D(1, 2)});
+			assertEquals(test3.getHeight().length, 1);
+			assertEquals(test3.getHeight()[0].getP1().getX(), 1);
+			assertEquals(test3.getHeight()[0].getP1().getY(), 2);
+			assertEquals(test3.getHeight()[0].getP2().getX(), 0);
+			assertEquals(test3.getHeight()[0].getP2().getY(), 2);
+			
+		} catch (Exception e) {
+			fail("");
+			e.printStackTrace();
+		}
+	}
+	
 	@Test
 	void TestTriangle() {
 		
 		try {
-			Triangle2D test1 = new Triangle2D(new Point2D[] {new Point2D(4.0f, 0), new Point2D(6.0f, 4.0f), new Point2D(0, 4.0f)}, Color.black);
+			Triangle2D test1 = new Triangle2D(new Point2D[] {new Point2D(4.0f, 0), new Point2D(6.0f, 4.0f), new Point2D(0, 4.0f)});
 			
 			assertEquals(test1.getPerimeter(), 6 + Math.sqrt(20) + Math.sqrt(32), 0.1);
 			assertEquals(test1.getHeight()[0].getP1().getX(), 4);
@@ -79,7 +155,7 @@ class TestForms {
 	void TestRectanle() {
 		
 		try {
-			Rectangle test1 = new Rectangle(new Point2D[] {new Point2D(0, 0), new Point2D(10.0f, 0), new Point2D(10.0f, 20.0f), new Point2D(0, 20.0f)}, Color.red);
+			Rectangle test1 = new Rectangle(new Point2D[] {new Point2D(0, 0), new Point2D(10.0f, 0), new Point2D(10.0f, 20.0f), new Point2D(0, 20.0f)});
 			
 			assertEquals(test1.getPerimeter(), 60, 0.1);
 			assertEquals(test1.getSurface(), 200, 0.1);

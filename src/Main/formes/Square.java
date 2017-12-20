@@ -15,11 +15,10 @@ public class Square extends Forme{
 	 * @param c Square's color
 	 * @throws Exception If points doesn't contains exactly 4 points
 	 */
-	public Square(Point2D[] points, Color c) throws Exception{
+	public Square(Point2D[] points) throws Exception{
 		super(null, null);
 		if(points.length == 4) {
 			super.setPoints(points);
-			super.setC(c);
 		} else {
 			throw new Exception("Invalid points");
 		}
@@ -54,14 +53,6 @@ public class Square extends Forme{
 		Vector2D side = Utils.vectorFromPoints(points[0], points[2]);
 		Segment[] result = new Segment[] {new Segment(points[0], points[2], side.getLength())}; 
 		return result;
-	}
-
-
-	@Override
-	public void render(Graphics2D g) {
-		
-			
-		
 	}
 
 }

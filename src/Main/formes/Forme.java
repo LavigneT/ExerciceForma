@@ -10,57 +10,39 @@ import utils.Vector2D;
 public abstract class Forme {
 	
 	protected Point2D[] points;
-	protected Color c;
 	
 	public Forme(Point2D[] points, Color c) {
 		this.points = points;
-		this.c = c;
 	}
 	
 	
 	/**
-	 * Calculate the form's perimeter 
-	 * @return Form's perimeter
+	 * Calcul le perimetre d'une forme
+	 * @return Perimetre de la forme
 	 */
 	public abstract float getPerimeter() throws Exception;
 	
 	/**
-	 * Calculate the form's perimeter
-	 * @return Forms perimeter
+	 * Calcul la surface d'une forme
+	 * @return Surface de la forme
 	 */
 	public abstract float getSurface() throws Exception;
 	
-	//TODO Work a better system to get diagonals
 	/**
-	 * Return an two segments representing the diagonals. 
-	 * @return vector2D
+	 * Diagonales de la forme, retourner sous forme de segment
+	 * @return Segment
 	 */
 	public abstract Segment[] getDiagonal() throws Exception;
 	
 	/**
-	 * Calculate the height and return a segment
+	 * Retourne un / des segment(s) qui symbolise la hauteur de la forme 
 	 * @return
 	 */
 	public abstract Segment[] getHeight() throws Exception;
 	
-	/**
-	 * Pass a graphics2D object to render you forms on the frame
-	 * 
-	 * @param g
-	 */
-	public abstract void render(Graphics2D g);
-	
 	
 	//getters and setters
 	
-	public Color getC() {
-		return c;
-	}
-	
-	public void setC(Color c) {
-		this.c = c;
-	}
-
 	public Point2D[] getPoints() {
 		return points;
 	}
