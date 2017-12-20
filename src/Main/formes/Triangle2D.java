@@ -78,10 +78,6 @@ public class Triangle2D extends Forme{
 		throw new Exception("Un triangle n'a pas de diagonales");
 	}
 
-	/*
-	 * Dans "result", pour trouver le second point j'ai inversé le sens des vecteurs car la projection renvoie un vecteur orienté vers le sommet,
-	 * hors pour trouver le second point je part du point qui represente le sommet et y applique applique le vecteur orthogonal a la base 
-	 */
 	@Override
 	public Segment[] getHeight() throws Exception {
 		Segment[] result = null;
@@ -98,15 +94,15 @@ public class Triangle2D extends Forme{
 		
 		} else if(type == typeTriangle.obtusangle || type == typeTriangle.rectangle) {
 			if(idAngleObtuOuRectangle == 0) {
-				Vector2D h1 = Utils.projection(Utils.vectorFromPoints(points[1], points[0]), Utils.vectorFromPoints(points[1], points[2]));
-				result = new Segment[] {new Segment(points[0], new Point2D(points[0].getX() - h1.getX(), points[0].getY() - h1.getY()), h1.getLength())};
+				Vector2D h1 = Utils.projection(Utils.vectorFromPoints(points[0], points[1]), Utils.vectorFromPoints(points[1], points[2]));
+				result = new Segment[] {new Segment(points[0], new Point2D(points[0].getX() + h1.getX(), points[0].getY() + h1.getY()), h1.getLength())};
 				
 			} else if(idAngleObtuOuRectangle == 1) {
-				Vector2D h1 = Utils.projection(Utils.vectorFromPoints(points[0], points[1]), Utils.vectorFromPoints(points[0], points[2]));
-				result = new Segment[] {new Segment(points[1], new Point2D(points[1].getX() - h1.getX(), points[1].getY() - h1.getY()), h1.getLength())};
+				Vector2D h1 = Utils.projection(Utils.vectorFromPoints(points[1], points[0]), Utils.vectorFromPoints(points[0], points[2]));
+				result = new Segment[] {new Segment(points[1], new Point2D(points[1].getX() + h1.getX(), points[1].getY() + h1.getY()), h1.getLength())};
 			} else if(idAngleObtuOuRectangle == 2) {
-				Vector2D h1 = Utils.projection(Utils.vectorFromPoints(points[1], points[2]), Utils.vectorFromPoints(points[1], points[0]));
-				result = new Segment[] {new Segment(points[2], new Point2D(points[2].getX() - h1.getX(), points[2].getY() - h1.getY()), h1.getLength())};
+				Vector2D h1 = Utils.projection(Utils.vectorFromPoints(points[2], points[1]), Utils.vectorFromPoints(points[1], points[0]));
+				result = new Segment[] {new Segment(points[2], new Point2D(points[2].getX() + h1.getX(), points[2].getY() + h1.getY()), h1.getLength())};
 			} else if(idAngleObtuOuRectangle == -1) {
 				throw new Exception();
 			}

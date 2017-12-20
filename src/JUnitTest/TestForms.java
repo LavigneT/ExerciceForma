@@ -63,6 +63,26 @@ class TestForms {
 		Vector2D v8 = new Vector2D(0, 2);
 		assertEquals(Utils.dotProduct(v7, v8), 0, 0.1);
 	}
+	//TODO cosinus a refaire
+	@Test
+	void TestSinus() {
+		Vector2D v1 = new Vector2D(0, 2);
+		Vector2D v2 = new Vector2D(2, 0);
+		assertEquals(Utils.getSinus(v1, v2), 1);
+		
+		Vector2D v3 = new Vector2D(0, 2);
+		Vector2D v4 = new Vector2D(0, 2);
+		assertEquals(Utils.getSinus(v3, v4), 0);
+		
+		Vector2D v5 = new Vector2D(0, 1);
+		Vector2D v6 = new Vector2D(0.707f, 0.707f);
+		assertEquals(Utils.getSinus(v5, v6), Math.sqrt(2)/2, 0.001);
+		
+		Vector2D v7 = new Vector2D(0, 1);
+		Vector2D v8 = new Vector2D(-0.966f, 0.259f);
+		assertEquals(Utils.getSinus(v7, v8), (Math.sqrt(6) - Math.sqrt(2))/4, 0.001);
+		
+	}
 	
 	/**
 	 * Test de l'enum qui determine si le triangle est obtusangle, rectangle ou acutangle
@@ -110,46 +130,28 @@ class TestForms {
 			assertEquals(test3.getHeight()[0].getP2().getX(), 0);
 			assertEquals(test3.getHeight()[0].getP2().getY(), 2);
 			
+			Triangle2D test4 = new Triangle2D(new Point2D[] {new Point2D(0, 0), new Point2D(5, 3), new Point2D(0, 5)});
+			assertEquals(test4.getHeight().length, 3);
+			assertEquals(test4.getHeight()[0].getP1().getX(), 0);
+			assertEquals(test4.getHeight()[0].getP1().getY(), 0);
+			assertEquals(test4.getHeight()[0].getP2().getX(), 1.7, 0.1);
+			assertEquals(test4.getHeight()[0].getP2().getY(), 4.3, 0.1);
+			
+			assertEquals(test4.getHeight()[1].getP1().getX(), 5);
+			assertEquals(test4.getHeight()[1].getP1().getY(), 3);
+			assertEquals(test4.getHeight()[1].getP2().getX(), 0, 0.1);
+			assertEquals(test4.getHeight()[1].getP2().getY(), 3, 0.1);
+			
+			assertEquals(test4.getHeight()[2].getP1().getX(), 0);
+			assertEquals(test4.getHeight()[2].getP1().getY(), 5);
+			assertEquals(test4.getHeight()[2].getP2().getX(), 2.3, 0.2);
+			assertEquals(test4.getHeight()[2].getP2().getY(), 1.5, 0.2);
 		} catch (Exception e) {
 			fail("");
 			e.printStackTrace();
 		}
 	}
 	
-	@Test
-	void TestTriangle() {
-		
-		try {
-			Triangle2D test1 = new Triangle2D(new Point2D[] {new Point2D(4.0f, 0), new Point2D(6.0f, 4.0f), new Point2D(0, 4.0f)});
-			
-			assertEquals(test1.getPerimeter(), 6 + Math.sqrt(20) + Math.sqrt(32), 0.1);
-			assertEquals(test1.getHeight()[0].getP1().getX(), 4);
-			assertEquals(test1.getHeight()[0].getP1().getY(), 0);
-			assertEquals(test1.getHeight()[0].getP2().getX(), 4);
-			assertEquals(test1.getHeight()[0].getP2().getY(), 4);
-			
-			assertEquals(test1.getHeight()[1].getP1().getX(), 6);
-			assertEquals(test1.getHeight()[1].getP1().getY(), 4);
-			assertEquals(test1.getHeight()[1].getP2().getX(), 3, 0.1);
-			assertEquals(test1.getHeight()[1].getP2().getY(), 1, 0.1);
-			
-			assertEquals(test1.getHeight()[2].getP1().getX(), 0);
-			assertEquals(test1.getHeight()[2].getP1().getY(), 4);
-			assertEquals(test1.getHeight()[2].getP2().getX(), 4.5, 0.4);
-			assertEquals(test1.getHeight()[2].getP2().getY(), 1.5, 0.4);
-			
-			try {
-				test1.getDiagonal();
-			} catch(Exception e) {
-				assertTrue(e != null);
-			}
-			
-			
-		} catch (Exception e) {
-			fail("");
-			e.printStackTrace();
-		}
-	}
 	
 	@Test
 	void TestRectanle() {

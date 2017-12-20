@@ -42,4 +42,10 @@ public class Utils {
 		return (v1.getX()*v2.getX() + v1.getY()*v2.getY());
 	}
 	
+	public static float getSinus(Vector2D v1, Vector2D v2) {
+		float cosinus = ((v1.getX()/v1.getLength()) * (v2.getX()/v2.getLength()) + (v1.getY()/v1.getLength()) * (v2.getY())/v2.getLength());
+		
+		return (float)Math.sin(Math.acos(cosinus));
+	}
+	
 }
