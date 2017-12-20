@@ -32,10 +32,10 @@ public abstract class Forme {
 	
 	//TODO Work a better system to get diagonals
 	/**
-	 * Return an two vectors representing the diagonals. 
+	 * Return an two segments representing the diagonals. 
 	 * @return vector2D
 	 */
-	public abstract Vector2D[] getDiagonal() throws Exception;
+	public abstract Segment[] getDiagonal() throws Exception;
 	
 	/**
 	 * Calculate the height and return a segment

@@ -3,6 +3,7 @@ package JUnitTest;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 import static org.junit.Assert.assertTrue;
 
 
@@ -12,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import Main.formes.Forme;
 import Main.formes.Point2D;
+import Main.formes.Rectangle;
 import Main.formes.Square;
 import Main.formes.Triangle2D;
 
@@ -28,11 +30,11 @@ class TestForms {
 					new Point2D(10.0f, 20.0f), new Point2D(20.0f, 20.f)}, Color.red);
 			
 			assertEquals(test1.getPerimeter(), 40, 0.05);
-			//assertEquals(test1.getHeight(), 10);
-			assertEquals(test1.getDiagonal()[0].getX(), 10);
-			assertEquals(test1.getDiagonal()[0].getY(), 10);
-			assertEquals(test1.getDiagonal()[1].getX(), -10);
-			assertEquals(test1.getDiagonal()[1].getY(), 10);
+			assertEquals(test1.getHeight()[0].getLength(), 10, 0.1);
+			assertEquals(test1.getDiagonal()[0].getP1().getX(), 10);
+			assertEquals(test1.getDiagonal()[0].getP1().getY(), 10);
+			assertEquals(test1.getDiagonal()[1].getP2().getX(), 20);
+			assertEquals(test1.getDiagonal()[1].getP2().getY(), 20);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -68,9 +70,30 @@ class TestForms {
 			
 			
 		} catch (Exception e) {
+			fail("");
 			e.printStackTrace();
 		}
+	}
+	
+	@Test
+	void TestRectanle() {
 		
+		try {
+			Rectangle test1 = new Rectangle(new Point2D[] {new Point2D(0, 0), new Point2D(10.0f, 0), new Point2D(10.0f, 20.0f), new Point2D(0, 20.0f)}, Color.red);
+			
+			assertEquals(test1.getPerimeter(), 60, 0.1);
+			assertEquals(test1.getSurface(), 200, 0.1);
+			
+			assertEquals(test1.getDiagonal()[0].getP1().getX(), 0);
+			assertEquals(test1.getDiagonal()[0].getP1().getY(), 0);
+			assertEquals(test1.getDiagonal()[0].getP2().getX(), 10);
+			assertEquals(test1.getDiagonal()[0].getP2().getY(), 20);
+			
+			
+		} catch (Exception e) {
+			fail("");
+			e.printStackTrace();
+		}
 		
 		
 	}

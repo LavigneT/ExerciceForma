@@ -39,7 +39,7 @@ public class Triangle2D extends Forme{
 	}
 
 	@Override
-	public Vector2D[] getDiagonal() throws Exception {
+	public Segment[] getDiagonal() throws Exception {
 		throw new Exception("Triangles don't have diagonales");
 	}
 
@@ -50,9 +50,9 @@ public class Triangle2D extends Forme{
 		Vector2D h2 = Utils.projection(Utils.vectorFromPoints(points[1], points[2]), Utils.vectorFromPoints(points[2], points[0]));
 		Vector2D h3 = Utils.projection(Utils.vectorFromPoints(points[2], points[0]), Utils.vectorFromPoints(points[0], points[1]));
 		
-		Segment[] result = {new Segment(points[0], new Point2D(points[0].getX() + h1.getX(), points[0].getY() + h1.getY())),
-				new Segment(points[1], new Point2D(points[1].getX() + h2.getX(), points[1].getY() + h2.getY())),
-				new Segment(points[2], new Point2D(points[2].getX() + h3.getX(), points[2].getY() + h3.getY()))
+		Segment[] result = {new Segment(points[0], new Point2D(points[0].getX() + h1.getX(), points[0].getY() + h1.getY()), h1.getLength()),
+				new Segment(points[1], new Point2D(points[1].getX() + h2.getX(), points[1].getY() + h2.getY()), h2.getLength()),
+				new Segment(points[2], new Point2D(points[2].getX() + h3.getX(), points[2].getY() + h3.getY()), h3.getLength())
 		};
 		return result;
 	}

@@ -41,15 +41,19 @@ public class Square extends Forme{
 	}
 
 	@Override
-	public Vector2D[] getDiagonal() {
+	public Segment[] getDiagonal() {
+		Vector2D diago1 = Utils.vectorFromPoints(points[0], points[2]);
+		Vector2D diago2 = Utils.vectorFromPoints(points[1], points[3]);
 		
-		return new Vector2D[] {Utils.vectorFromPoints(points[0], points[3]), Utils.vectorFromPoints(points[1], points[2])};
+		Segment[] result = {new Segment(points[0], points[2], diago1.getLength()), new Segment(points[1], points[3], diago2.getLength())};
+		return result;
 	}
 
 	@Override
 	public Segment[] getHeight() {
 		Vector2D side = Utils.vectorFromPoints(points[0], points[2]);
-		return null;
+		Segment[] result = new Segment[] {new Segment(points[0], points[2], side.getLength())}; 
+		return result;
 	}
 
 
