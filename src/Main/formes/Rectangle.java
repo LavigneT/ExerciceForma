@@ -10,7 +10,7 @@ import utils.Vector2D;
 public class Rectangle extends Forme{
 
 	public Rectangle(Point2D[] points) throws Exception{
-		super(null, null);
+		super(null);
 		if(points.length == 4) {
 			super.setPoints(points);
 		} else {

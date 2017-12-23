@@ -1,8 +1,5 @@
 package Main.formes;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
-
 import utils.Segment;
 import utils.Utils;
 import utils.Vector2D;
@@ -16,7 +13,7 @@ public class Square extends Forme{
 	 * @throws Exception If points doesn't contains exactly 4 points
 	 */
 	public Square(Point2D[] points) throws Exception{
-		super(null, null);
+		super(null);
 		if(points.length == 4) {
 			super.setPoints(points);
 		} else {

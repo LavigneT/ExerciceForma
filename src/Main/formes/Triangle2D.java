@@ -1,7 +1,5 @@
 package Main.formes;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
 
 import utils.Segment;
 import utils.Utils;
@@ -19,7 +17,7 @@ public class Triangle2D extends Forme{
 	private int idAngleObtuOuRectangle= -1;
 	
 	public Triangle2D(Point2D[] points) throws Exception{
-		super(null, null);
+		super(null);
 		if(points.length == 3) {
 			super.setPoints(points);
 			setTypeTriangle();
@@ -70,7 +68,12 @@ public class Triangle2D extends Forme{
 
 	@Override
 	public float getSurface() {
-		return 1;
+		Vector2D side1 = Utils.vectorFromPoints(points[0], points[1]);
+		Vector2D side2 = Utils.vectorFromPoints(points[1], points[2]);
+		
+		float sinus = (float)Utils.getSinus(side1, side2);
+		
+		return (side1.getLength()*side2.getLength())/2 * sinus;
 	}
 
 	@Override
@@ -114,6 +117,4 @@ public class Triangle2D extends Forme{
 	public typeTriangle getType() {
 		return type;
 	}
-
-	
 }

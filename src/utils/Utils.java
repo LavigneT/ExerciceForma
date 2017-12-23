@@ -16,16 +16,16 @@ public class Utils {
 	
 	/**
 	 * Project v1 into v2
+	 * Rappel de la formule : kv  =  |w| (wu · vu) vu 
 	 * 
 	 * @param v1
 	 * @param v2
-	 * @return
+	 * @return Vecteur orthogonal à v2
 	 */
 	public static Vector2D projection(Vector2D v1, Vector2D v2) {
 		
 		Vector2D result = null;
 		
-		//probleme avec 0
 		float cosinus = ((v1.getX()/v1.getLength()) * (v2.getX()/v2.getLength()) + (v1.getY()/v1.getLength()) * (v2.getY())/v2.getLength());
 		float kvX = v1.getLength() * cosinus * (v2.getX()/v2.getLength());
 		float kvY = v1.getLength() * cosinus * (v2.getY()/v2.getLength());

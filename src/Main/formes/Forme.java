@@ -1,17 +1,16 @@
 package Main.formes;
 
-import java.awt.Color;
 
-import java.awt.Graphics2D;
+
 
 import utils.Segment;
-import utils.Vector2D;
+
 
 public abstract class Forme {
 	
 	protected Point2D[] points;
 	
-	public Forme(Point2D[] points, Color c) {
+	public Forme(Point2D[] points) {
 		this.points = points;
 	}
 	

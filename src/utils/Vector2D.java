@@ -5,10 +5,19 @@ public class Vector2D {
 	private float x, y;
 	private float length;
 	
+	/**
+	 * Construit un vecteur dont le deplacement sur l'axe des absisses = x et sur les ordonnés = y
+	 * Lors de la construction, on calcul la longeur du vecteur
+	 * 
+	 * @param x
+	 * @param y
+	 */
 	public Vector2D(float x, float y) {
-		this.x = x;
-		this.y = y;
-		length = (float)Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
+		setX(x);
+		setY(y);
+		try {
+			setLength((float)Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2)));
+		} catch (Exception e) {e.printStackTrace();}
 	}
 
 	
@@ -36,8 +45,12 @@ public class Vector2D {
 	}
 
 
-	public void setLength(float length) {
-		this.length = length;
+	public void setLength(float length) throws Exception {
+		if(length >= 0) {
+			this.length = length;
+		} else {
+			throw new Exception("Longeur negative");
+		}
 	}
 	
 	

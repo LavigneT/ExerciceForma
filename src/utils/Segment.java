@@ -14,9 +14,11 @@ public class Segment {
 	 * @param y
 	 */
 	public Segment(Point2D p1, Point2D p2, float length) {
-		this.p1 = p1;
-		this.p2 = p2;
-		this.length = length;
+		setP1(p1);
+		setP2(p2);
+		try {
+			setLength(length);
+		} catch (Exception e) {e.printStackTrace();}
 	}
 	
 	
@@ -44,8 +46,12 @@ public class Segment {
 	}
 
 
-	public void setLength(float length) {
-		this.length = length;
+	public void setLength(float length) throws Exception {
+		if(length >= 0) {
+			this.length = length;
+		} else {
+			throw new Exception("Longeur negative");
+		}
 	}
 	
 	
